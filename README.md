@@ -93,3 +93,13 @@ curl -X POST https://api.bakerstreetlabs.com/api/v1/models/scientific/query \
 
 ---
 *"In business, as in research, the most improbable solutions often yield the greatest returns."*
+## 💖 Support Our Work
+
+If you find this API useful, please consider supporting us:
+
+[![GitHub Sponsors](https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#EA4AAA)](https://github.com/sponsors/BoozeLee)
+[![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/REALbakerstreet221b)
+[![Wise](https://img.shields.io/badge/Wise-FFDD00?style=for-the-badge&logo=wise&logoColor=black)](https://wise.com/pay/me/kiliaanv)
+
+Thank you for supporting open-source AI research and development!
+
