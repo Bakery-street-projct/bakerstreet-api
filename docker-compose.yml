@@ -1,0 +1,14 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - API_SECRET_KEY=your-secret-key-change-in-production
+      - STRIPE_SECRET_KEY=sk_test_your_stripe_key_here
+    volumes:
+      - .:/app
+    command: python -m api.app

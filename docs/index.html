@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baker Street Laboratory API - Revolutionary AI Research Platform</title>
+    <style>
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #ff6b6b;
+            --dark: #2d3748;
+            --light: #f7fafc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: #ff5252;
+        }
+        
+        .cta-button.secondary {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .cta-button.secondary:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .pricing {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .pricing .section-header h2,
+        .pricing .section-header p {
+            color: white;
+        }
+        
+        .pricing-tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .pricing-tier {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-tier:hover {
+            transform: scale(1.05);
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .tier-name {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tier-price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .tier-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+        
+        .tier-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .tier-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .testimonials {
+            background: white;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .quick-start {
+            background: linear-gradient(135deg, #e6f7ff 0%, #f0f9ff 100%);
+        }
+        
+        .code-example {
+            background: #2d3748;
+            color: #e2e8f0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        
+        .api-endpoints {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .endpoint {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .endpoint-method {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .post {
+            background: #48bb78;
+            color: white;
+        }
+        
+        .get {
+            background: #4299e1;
+            color: white;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .support-options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🔬 Baker Street Laboratory API</h1>
+            <p class="tagline">Revolutionary AI-Augmented Research Ecosystem</p>
+            <p>7/8 Specialized AI Models Operational - 25GB of Research Power</p>
+            <div style="margin-top: 2rem;">
+                <a href="#pricing" class="cta-button">Get Started</a>
+                <a href="#docs" class="cta-button secondary">View Documentation</a>
+            </div>
+        </div>
+    </header>
+    
+    <section id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>🚀 Transform Your Research Capabilities</h2>
+                <p>Access our revolutionary AI research ecosystem through simple API calls</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Visual Analysis</h3>
+                    <p>Advanced image and data visualization analysis with our detective AI</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Semantic Search</h3>
+                    <p>Intelligent text and document search with contextual understanding</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3>Scientific Methodology</h3>
+                    <p>Research design and analysis with scientific rigor</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">✍️</div>
+                    <h3>Creative Writing</h3>
+                    <p>Engaging reports and content generation</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <h3>Data Analysis</h3>
+                    <p>Programming and data processing expertise</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚖️</div>
+                    <h3>Legal Research</h3>
+                    <p>Compliance and regulatory analysis</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="quick-start" id="docs">
+        <div class="container">
+            <div class="section-header">
+                <h2>⚡ Quick Start Guide</h2>
+                <p>Get up and running with our API in minutes</p>
+            </div>
+            
+            <h3>1. Get Your API Key</h3>
+            <div class="code-example">
+curl -X POST https://api.bakerstreetlabs.com/auth/register \<br>
+  -H "Content-Type: application/json" \<br>
+  -d '{<br>
+    "username": "your_username",<br>
+    "password": "your_password"<br>
+  }'<br><br>
+                
+curl -X POST https://api.bakerstreetlabs.com/auth/login \<br>
+  -H "Content-Type: application/json" \<br>
+  -d '{<br>
+    "username": "your_username",<br>
+    "password": "your_password"<br>
+  }'
+            </div>
+            
+            <h3>2. Make Your First API Call</h3>
+            <div class="code-example">
+curl -X POST https://api.bakerstreetlabs.com/api/v1/models/scientific/query \<br>
+  -H "Content-Type: application/json" \<br>
+  -H "X-API-Key: YOUR_API_KEY" \<br>
+  -d '{<br>
+    "prompt": "Design a clinical trial for psilocybin depression treatment",<br>
+    "parameters": {<br>
+      "temperature": 0.7,<br>
+      "max_tokens": 1000<br>
+    }<br>
+  }'
+            </div>
+            
+            <h3>Available API Endpoints</h3>
+            <div class="api-endpoints">
+                <div class="endpoint">
+                    <span class="endpoint-method post">POST</span>
+                    <div>/api/v1/models/scientific/query</div>
+                    <div>Scientific research methodology</div>
+                </div>
+                
+                <div class="endpoint">
+                    <span class="endpoint-method post">POST</span>
+                    <div>/api/v1/models/legal/query</div>
+                    <div>Legal research and compliance</div>
+                </div>
+                
+                <div class="endpoint">
+                    <span class="endpoint-method post">POST</span>
+                    <div>/api/v1/models/creative/query</div>
+                    <div>Creative writing and reports</div>
+                </div>
+                
+                <div class="endpoint">
+                    <span class="endpoint-method get">GET</span>
+                    <div>/api/v1/models/status</div>
+                    <div>Check model status</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>💰 Simple, Transparent Pricing</h2>
+                <p>Choose the plan that fits your research needs</p>
+            </div>
+            
+            <div class="pricing-tiers">
+                <div class="pricing-tier">
+                    <div class="tier-name">Free</div>
+                    <div class="tier-price">$0</div>
+                    <div>per month</div>
+                    <ul class="tier-features">
+                        <li>100 requests/month</li>
+                        <li>3 AI models</li>
+                        <li>Basic API access</li>
+                        <li>Community support</li>
+                    </ul>
+                    <a href="#" class="cta-button">Get Started</a>
+                </div>
+                
+                <div class="pricing-tier">
+                    <div class="tier-name">Starter</div>
+                    <div class="tier-price">$29</div>
+                    <div>per month</div>
+                    <ul class="tier-features">
+                        <li>1,000 requests/month</li>
+                        <li>5 AI models</li>
+                        <li>Priority support</li>
+                        <li>Higher rate limits</li>
+                    </ul>
+                    <a href="#" class="cta-button">Start Free Trial</a>
+                </div>
+                
+                <div class="pricing-tier">
+                    <div class="tier-name">Professional</div>
+                    <div class="tier-price">$99</div>
+                    <div>per month</div>
+                    <ul class="tier-features">
+                        <li>10,000 requests/month</li>
+                        <li>All 7 AI models</li>
+                        <li>24/7 support</li>
+                        <li>Advanced parameters</li>
+                    </ul>
+                    <a href="#" class="cta-button">Start Free Trial</a>
+                </div>
+                
+                <div class="pricing-tier">
+                    <div class="tier-name">Enterprise</div>
+                    <div class="tier-price">$499</div>
+                    <div>per month</div>
+                    <ul class="tier-features">
+                        <li>100,000 requests/month</li>
+                        <li>All AI models</li>
+                        <li>Dedicated support</li>
+                        <li>SLA guarantee</li>
+                    </ul>
+                    <a href="#" class="cta-button">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>🌟 What Researchers Are Saying</h2>
+                <p>Hear from early adopters of our API</p>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p class="testimonial-text">"The Baker Street API reduced our research time by 80%. What used to take weeks now takes hours."</p>
+                    <p class="testimonial-author">- Dr. Sarah Chen, Neuroscientist</p>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-text">"The legal compliance module alone saved us thousands in consulting fees. Essential for any research institution."</p>
+                    <p class="testimonial-author">- Michael Rodriguez, Legal Director</p>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-text">"The creative writing capabilities transformed our grant applications. We've doubled our funding success rate."</p>
+                    <p class="testimonial-author">- Prof. James Wilson, Research Lead</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>💖 Support Our Work</h2>
+                <p>Help us continue developing cutting-edge AI research tools</p>
+            </div>
+            
+            <div class="support-options">
+                <a href="https://paypal.me/REALbakerstreet221b" class="cta-button">PayPal</a>
+                <a href="#" class="cta-button">Bank Transfer</a>
+                <a href="https://github.com/sponsors/BoozeLee" class="cta-button">GitHub Sponsors</a>
+            </div>
+            
+            <div style="margin-top: 2rem; text-align: center;">
+                <p><strong>Bank Transfer (Lowest Fees):</strong></p>
+                <p>IBAN: BE70 9051 5229 1825<br>
+                BIC/SWIFT: WIREDEMMXXX<br>
+                Account Holder: Kiliaan V<br>
+                Bank: Wise (formerly TransferWise)<br>
+                Wise Tag: @kiliaanv</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <h3>Baker Street Laboratory</h3>
+            <p>Revolutionary AI-Augmented Research Ecosystem</p>
+            <p>Email: iamthatiamresearch@gmail.com | Phone: +32 471 31 52 83</p>
+            <p>&copy; 2025 Bakery Street Project. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
